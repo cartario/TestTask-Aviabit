@@ -2,6 +2,7 @@
   "name": "aviabit",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://cartario.github.io/aviabit",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -13,7 +14,7 @@
     "redux-thunk": "2.3.0",
     "axios": "^0.19.2",
     "node-sass": "^4.14.1",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2"    
   },
   "scripts": {
     "start": "react-scripts start",
