@@ -127,6 +127,7 @@ body {
 
 .card__item:first-child{
   width: 32%;
+  background-color: grey;
 }
 
 @media (max-width: $tablet-width) {
@@ -137,10 +138,35 @@ body {
 
   .main__list{
     width: 100%;
+    justify-content: flex-end;
   }
 
-  .main__item{
+  .main__item{    
     padding: 10px;
+  }
+
+  .main__item:nth-child(2){    
+    width: 56.5%;    
+  }
+
+  .main__item:nth-child(3){    
+    width: 43.5%;    
+  }
+
+  .main__item:first-child{
+    display: none;
+  }
+
+  .card__item{
+    width:47.5%;
+  }
+
+  .card__item:first-child{
+    width: 5%;    
+  }
+
+  .card__item:nth-child(2){
+    display: none;
   }
 }
 //////////////
