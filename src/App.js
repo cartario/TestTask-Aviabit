@@ -6,22 +6,64 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <p className="hello">Hello</p>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="header">
+        <nav className="nav">
+          <div className="nav__logo">
+            [Logo]
+          </div>
+          <div className="nav__menu">
+            [Menu]
+          </div>
+        </nav>
       </header>
-      
+      <main className="main">
+        <h1 className="main__title">
+          Информация по налету командира воздушного судна
+        </h1>
+        <div className="main__container">
+          <select className="main__select">
+            <option>
+              Все года
+            </option>
+            <option>
+              2020
+            </option>
+            <option>
+              2019
+            </option>
+            <option>
+              2018
+            </option>
+          </select>
+          
+          <div className="main__input-container">
+            <input className="main__input" type="checkbox" id="checkbox"/>
+            <label className="main__label" htmlFor="checkbox">По факту</label>
+          </div>
+          <ul className="main__list">
+            <li className="main__item">
+              Flight
+            </li>
+            <li className="main__item">
+              TimeWork
+            </li>
+            <li className="main__item">
+              TimeFlight
+            </li>            
+          </ul>         
+
+          
+          
+        </div>
+        <div className="content">Content</div>
+      </main>
+      <footer className="footer">
+        <ul className="footer__list">
+          <li className="footer__item">[Copyright]</li>
+          <li className="footer__item">[Социальные сети]</li>
+          <li className="footer__item">[Адрес]</li>
+        </ul>
+      </footer>
     </div>
   );
 }

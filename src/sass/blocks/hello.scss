@@ -1,3 +1,141 @@
-.hello {
-  background-color: red;
+$color-blue : #0C99A6;
+$color-blue-dark : #00626B;
+$color-orange : #FF7800;
+$color-orange-dark : #A64E00;
+$color-grey: #e5e5e5;
+$color-grey-dark: #5b5b5b;
+$color-btn-green: #4EB543;
+
+$tablet-width: 660px;
+$desktop-width: 960px;
+$mobile-width-only: 959px;
+$retina-dppx: 1.5dppx;
+
+body {
+  margin: 0;  
 }
+
+//////////////////////////////
+.header {
+  background-color: $color-blue;
+}
+
+.nav {
+  display: flex;
+  color: white;
+  font-weight: bold;
+}
+
+.nav__logo {
+  width: 10%;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.nav__menu {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+@media (max-width: $tablet-width) {
+  .nav__logo {
+    display: none;
+  }
+
+  .nav__menu {
+    width: 100%;
+    padding: 20px;
+  }
+}
+
+///////////////////////////
+.main {
+  
+}
+
+.main__container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.main__list{
+  display: flex;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.main__item {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;  
+  justify-content: center;  
+  vertical-align: middle;  
+}
+
+.main__select, .main__item {
+  margin: 5px;
+  padding: 10px;
+  text-align-last: center;
+  font-size: 16px;
+  border: 3px solid $color-blue-dark;
+  border-radius: 20px;
+  background-color: $color-blue-dark;
+  color: white;
+}
+
+.main__select {  
+  width: 30%;
+}
+
+.main__input-container { 
+  width: 20%; 
+  padding: 20px;
+  order: 1;
+}
+
+.content {
+  height: 300px;
+}
+
+@media (max-width: $tablet-width) {
+  .main__container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main__input-container {
+    order: 0;
+  }
+
+  .main__item{
+    width: 120px;
+  }
+}
+//////////////
+.footer{
+  background-color: $color-blue;
+  color: white;
+}
+
+.footer__list {
+  display: flex;
+  justify-content: space-around;  
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__item {
+  padding: 10px;
+}
+
+@media (max-width: $tablet-width) {
+  .footer__list{
+    flex-direction: column;
+  }
+}
+///////////////////
+
