@@ -33,4 +33,4 @@ const generateFlight = () => ({
   },
 });
 
-export const mock = generateFlights(5).sort((a,b)=>b.dateFlight - a.dateFlight);
+export const flights = generateFlights(10).sort((a,b)=>b.dateFlight - a.dateFlight);
