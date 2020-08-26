@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/aviabit/static/css/main.50707a63.chunk.css",
+    "main.css": "/aviabit/static/css/main.05441e66.chunk.css",
     "main.js": "/aviabit/static/js/main.6cf4b5ea.chunk.js",
     "main.js.map": "/aviabit/static/js/main.6cf4b5ea.chunk.js.map",
     "runtime-main.js": "/aviabit/static/js/runtime-main.12673ce2.js",
@@ -8,16 +8,16 @@
     "static/js/2.05d5ea2d.chunk.js": "/aviabit/static/js/2.05d5ea2d.chunk.js",
     "static/js/2.05d5ea2d.chunk.js.map": "/aviabit/static/js/2.05d5ea2d.chunk.js.map",
     "index.html": "/aviabit/index.html",
-    "precache-manifest.63294bf15da9a649b761341295c5c384.js": "/aviabit/precache-manifest.63294bf15da9a649b761341295c5c384.js",
+    "precache-manifest.0cfc1d481c1f9e0a4f92d0fd29de5f4f.js": "/aviabit/precache-manifest.0cfc1d481c1f9e0a4f92d0fd29de5f4f.js",
     "service-worker.js": "/aviabit/service-worker.js",
-    "static/css/main.50707a63.chunk.css.map": "/aviabit/static/css/main.50707a63.chunk.css.map",
+    "static/css/main.05441e66.chunk.css.map": "/aviabit/static/css/main.05441e66.chunk.css.map",
     "static/js/2.05d5ea2d.chunk.js.LICENSE.txt": "/aviabit/static/js/2.05d5ea2d.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/aviabit/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.12673ce2.js",
     "static/js/2.05d5ea2d.chunk.js",
-    "static/css/main.50707a63.chunk.css",
+    "static/css/main.05441e66.chunk.css",
     "static/js/main.6cf4b5ea.chunk.js"
   ]
 }
