@@ -3,7 +3,7 @@ $color-blue-dark : #00626B;
 $color-orange : #FF7800;
 $color-orange-dark : #A64E00;
 $color-grey: #e5e5e5;
-$color-grey-dark: #5b5b5b;
+$color-grey-light: #bdbbbb;
 $color-btn-green: #4EB543;
 
 $tablet-width: 660px;
@@ -77,8 +77,9 @@ body {
   align-items: center;  
   justify-content: center;  
   vertical-align: middle; 
+  font-weight: bold;
   border: 3px solid white;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: grey;
   color: white; 
 }
@@ -88,8 +89,9 @@ body {
   padding: 10px;
   text-align-last: center;
   font-size: 16px;
+  font-weight: bold;
   border: 3px solid $color-blue-dark;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: $color-blue-dark;
   color: white;
   text-decoration: underline;
@@ -103,9 +105,28 @@ body {
   margin: 5px;
 }
 
-.content {
-  height: 300px;
-  padding: 100px;
+.card{
+  display: flex;  
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card__item{
+  display: flex;
+  width: 23.3%;
+  padding: 15px;
+  align-items: center;  
+  justify-content: center;  
+  vertical-align: middle; 
+  border: 3px solid white;
+  border-radius: 10px;
+  background-color: $color-grey-light;
+  color: white; 
+}
+
+.card__item:first-child{
+  width: 32%;
 }
 
 @media (max-width: $tablet-width) {
@@ -124,6 +145,7 @@ body {
 }
 //////////////
 .footer{
+  margin-top: 15px;
   background-color: $color-blue;
   color: white;
 }

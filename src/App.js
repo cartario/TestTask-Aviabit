@@ -2,37 +2,32 @@ import React from 'react';
 import logo from './logo.svg';
 import './sass/app.scss';
 import './App.css';
+import {mock} from './mock.js';
 
-const Year = () =>{
-  return (
-    <div className="main__container">
-    <select className="main__select">
-      <option>
-        Все года
-      </option>
-      <option>
-        2020
-      </option>
-      <option>
-        2019
-      </option>
-      <option>
-        2018
-      </option>
-    </select>
-    <ul className="main__list">
+const Card = (props) =>{
 
-      <li className="main__item">
-        Flight
+  const isYear = true;
+
+  const {data} = props;
+  const {dateFlight, flight, timeWork, timeFlight} = data;
+
+  return (<>
+
+    <ul className="main__card card">
+      <li className="card__item">
+        {isYear ? dateFlight.getFullYear() : dateFlight.getMonth()}
       </li>
-      <li className="main__item">
-        TimeWork
+      <li className="card__item">
+        {flight}
       </li>
-      <li className="main__item">
-        TimeFlight
+      <li className="card__item">
+        {timeWork}
+      </li>
+      <li className="card__item">
+        {timeFlight}
       </li>            
     </ul> 
-  </div>
+  </>
   );
 }
 
@@ -77,24 +72,17 @@ function App() {
               Flight
             </li>
             <li className="main__item">
-              TimeWork
+              TimeWork, с
             </li>
             <li className="main__item">
-              TimeFlight
+              TimeFlight, с
             </li>            
           </ul> 
         </div>
-
-
-        <Year/>
-        <Year/>
-        <Year/>
-        <Year/>
-
-
-
-        <div className="content">
-          Content</div>
+        {mock.map((data)=>
+        <Card 
+          key={data.dateFlight}
+          data={data}/>)}        
       </main>
       <footer className="footer">
         <ul className="footer__list">
