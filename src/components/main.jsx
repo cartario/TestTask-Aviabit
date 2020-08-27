@@ -13,6 +13,12 @@ class Main extends React.Component {
       value: `Все года`,
       isFactData: false,
     };
+
+    this._clickHandler = this._clickHandler.bind(this);
+  }
+
+  _clickHandler(value){    
+    this.props.setActiveFlight(value, this.state.value, this.state.isFactData);
   }
 
   render(){
@@ -55,6 +61,7 @@ class Main extends React.Component {
           key={data.dateFlight}
           data={data}
           activeYear={this.state.value}
+          clickHandler = {this._clickHandler}
           />)}        
       </main>
     );

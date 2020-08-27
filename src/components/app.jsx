@@ -6,24 +6,28 @@ import Header from './header';
 import Main from './main';
 import Footer from './footer';
 import Details from './details';
-import {flights} from '../mock'
+
 import { connect } from 'react-redux';
-import {ActionCreator, Operation} from '../reducer.js';
+import {ActionCreator} from '../reducer.js';
 
 const App = (props) => {
-  
-  return (
-    
+  const {flights, activeFlight, setActiveFlight} = props;
+  return (    
     <div className="App">
       <HashRouter >        
-          <Header/>
-          <Route exact path="/">
-            <Main/>  
-          </Route>
-          <Route path="/details">
-            <Details data = {flights}/>
-          </Route>
-          <Footer/>
+        <Header/>
+        <Route exact path="/">
+          <Main
+            setActiveFlight = {setActiveFlight}
+            
+          />  
+        </Route>
+        <Route path="/details">
+          <Details data = {flights}
+          activeFlight = {activeFlight}
+          />
+        </Route>
+        <Footer/>
       </HashRouter>
     </div>    
   );
@@ -31,14 +35,13 @@ const App = (props) => {
 
 const mapStateToProps = (state) => ({
   flights: state.FLIGHTS.flights,
+  activeFlight: state.FLIGHTS.activeFlight,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setActiveFlight: () => {
-    dispatch(ActionCreator.setActiveFlight());    
+  setActiveFlight: (value, year, isFactData) => {
+    dispatch(ActionCreator.setActiveFlight(value, year, isFactData));    
   },
-
-
 });
 
 export {App};

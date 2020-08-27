@@ -11,7 +11,7 @@ const Card = (props) =>{
   return (
     <ul className="main__card card">
       <li className="card__item">
-        <Link to="/details">{activeYear === defaultName ? dateFlight.getFullYear() : getMonthName(dateFlight.getMonth())}</Link>
+        <Link onClick={(e)=>{props.clickHandler(e.target.textContent)}} to="/details">{activeYear === defaultName ? dateFlight.getFullYear() : getMonthName(dateFlight.getMonth())}</Link>
       </li>
       <li className="card__item">
         {timeBlock}

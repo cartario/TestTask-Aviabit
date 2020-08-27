@@ -33,4 +33,4 @@ const generateFlight = () => ({
   },
 });
 
-export const flights = generateFlights(10).sort((a,b)=>b.dateFlight - a.dateFlight);
+export const flights = generateFlights(20).sort((a,b)=>b.dateFlight - a.dateFlight);

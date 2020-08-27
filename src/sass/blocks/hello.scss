@@ -213,12 +213,13 @@ body {
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  border: 3px solid $color-grey-light;  
+  
 }
 
 .details__item, .details__title {
-  border: 1px solid white;
   padding: 8px;
+  border: 1px solid white;
+  border-radius: 10px;
 }
 
 .details__row:nth-child(even){

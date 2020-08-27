@@ -4,13 +4,13 @@ import {getDateFormat} from '../utils';
 import { Link } from 'react-router-dom';
 
 const Details = (props) =>{
-  const {data, activeYear} = props; 
+  const {data, activeFlight} = props; 
 
   const names = Object.keys(data[0]);  
 
   return (<>
     <Link className="go-back" to="/">&lt; Вернуться назад</Link>
-    <h2 className="details-header">Детальная информация</h2>
+  <h2 className="details-header">Детальная информация за {`${activeFlight.value} ${activeFlight.year} фактически?-${activeFlight.isFactData}`}</h2>
 
     <div className="details-container">
     <table className="details" border="1">
@@ -20,15 +20,15 @@ const Details = (props) =>{
         </tr>
 
         <tr className="details__row" >
-          <td colspan={names.length}>По выбранному</td>
+          <td colSpan={names.length}>По выбранному</td>
         </tr>
 
         <tr className="details__row" >
-          <td colspan={names.length}>___</td>
+          <td colSpan={names.length}>___</td>
         </tr>
 
         <tr className="details__row" >
-          <td colspan={names.length}>По всем полетам</td>
+          <td colSpan={names.length}>По всем полетам</td>
         </tr>
 
         {data.map((flight)=>

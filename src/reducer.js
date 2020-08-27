@@ -52,6 +52,11 @@ export const getFlightsByActive = (flights, state, isFactData) => {
 
 const initialState = {
   flights: flights,
+  activeFlight: {
+    year: ``,
+    value: ``,
+    isFactData: ``,
+  },
 };
 
 const ActionType = {
@@ -64,10 +69,13 @@ export const ActionCreator = {
     type: `LOAD_FLIGHTS`,
     payload: flights,
   }),
-  setActiveFlight: () => ({
-    type: `SET_ACTIVE_FLIGHT`,
-    payload: 1,
-  }),
+  setActiveFlight: (value, year, isFactData) => {
+    
+    return ({
+      type: `SET_ACTIVE_FLIGHT`,
+      payload: {value: value, year: year, isFactData: isFactData},
+    })
+  },
 };
 
 const adapter = (data) => ({
@@ -111,7 +119,8 @@ export const reducer = (state = initialState, action) => {
     return extend(state, {flights: [...state.flights, action.payload]});
 
   case ActionType.SET_ACTIVE_FLIGHT:
-    return extend(state, {flights: action.payload});
+    
+    return extend(state, {activeFlight: action.payload});
 
     default:
       return state;
