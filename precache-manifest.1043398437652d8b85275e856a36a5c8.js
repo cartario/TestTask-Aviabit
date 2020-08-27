@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "90d73948e4ffe723836353070eb9f9b6",
+    "revision": "fb1f2af5138ff0e6104aa3e2d0ea60aa",
     "url": "/aviabit/index.html"
   },
   {
-    "revision": "8611267b19cc27f64388",
+    "revision": "282a6a9dd5f05155caa9",
     "url": "/aviabit/static/css/main.05441e66.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/aviabit/static/js/2.7ab55635.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8611267b19cc27f64388",
-    "url": "/aviabit/static/js/main.6cc0b9ef.chunk.js"
+    "revision": "282a6a9dd5f05155caa9",
+    "url": "/aviabit/static/js/main.5c5dc5cf.chunk.js"
   },
   {
     "revision": "296d4798780a3ba6221a",
