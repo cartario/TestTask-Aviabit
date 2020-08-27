@@ -4,7 +4,8 @@ import {getMonthName} from '../utils';
 
 const Card = (props) =>{
   const {data, activeYear} = props;  
-  const {dateFlight, flight, timeWork, timeFlight} = data;
+
+  const {dateFlight, timeWork, timeFlight, timeBlock} = data;
 
   return (
     <ul className="main__card card">
@@ -12,7 +13,7 @@ const Card = (props) =>{
         {activeYear === defaultName ? dateFlight.getFullYear() : getMonthName(dateFlight.getMonth())}
       </li>
       <li className="card__item">
-        {flight}
+        {timeBlock}
       </li>
       <li className="card__item">
         {timeWork}

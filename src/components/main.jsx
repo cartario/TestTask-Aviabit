@@ -36,7 +36,7 @@ class Main extends React.Component {
           <ul className="main__list">
           
             <li className="main__item">
-              Flight
+              TimeBlock
             </li>
             <li className="main__item">
               TimeWork, с
