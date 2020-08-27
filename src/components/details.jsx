@@ -9,12 +9,26 @@ const Details = (props) =>{
   const names = Object.keys(data[0]);  
 
   return (<>
-    <Link to="/">Вернуться назад</Link>
+    <Link className="go-back" to="/">&lt; Вернуться назад</Link>
+    <h2 className="details-header">Детальная информация</h2>
+
     <div className="details-container">
     <table className="details" border="1">
       <tbody>      
         <tr className="details__row">
           {names.map((name)=><th className="details__title" key={name}>{name}</th>)}
+        </tr>
+
+        <tr className="details__row" >
+          <td colspan={names.length}>По выбранному</td>
+        </tr>
+
+        <tr className="details__row" >
+          <td colspan={names.length}>___</td>
+        </tr>
+
+        <tr className="details__row" >
+          <td colspan={names.length}>По всем полетам</td>
         </tr>
 
         {data.map((flight)=>

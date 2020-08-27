@@ -194,6 +194,16 @@ body {
   }
 }
 ///////////////////
+.go-back{
+  display: block;  
+  text-align: left;  
+}
+
+.details-header{
+  margin: 10px;
+  padding: 0px;
+}
+
 .details-container{  
   overflow-x: scroll;
 }
