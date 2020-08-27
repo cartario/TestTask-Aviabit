@@ -1,3 +1,7 @@
+export const extend = (oldData, newData) => {
+  return Object.assign({}, oldData, newData);
+};
+
 export const getUniqYears = (flights, isFactData) => {
 
   const yearsList = flights.filter((flight)=>{

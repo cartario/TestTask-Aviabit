@@ -7,8 +7,11 @@ import Main from './main';
 import Footer from './footer';
 import Details from './details';
 import {flights} from '../mock'
+import { connect } from 'react-redux';
+import {ActionCreator, Operation} from '../reducer.js';
 
-const App = () => {
+const App = (props) => {
+  
   return (
     
     <div className="App">
@@ -26,4 +29,17 @@ const App = () => {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  flights: state.FLIGHTS.flights,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setActiveFlight: () => {
+    dispatch(ActionCreator.setActiveFlight());    
+  },
+
+
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);

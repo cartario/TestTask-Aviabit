@@ -1,5 +1,6 @@
 import {defaultName} from './const';
-import {getUniqValues} from './utils.js';
+import {extend, getUniqValues} from './utils.js';
+import {flights} from './mock';
 
 export const getFlightsByActive = (flights, state, isFactData) => {
   const flightsByFact = flights.filter((flight)=>{
@@ -48,3 +49,72 @@ export const getFlightsByActive = (flights, state, isFactData) => {
   }  
   return getFilteredFlights(false).reverse();
 };
+
+const initialState = {
+  flights: flights,
+};
+
+const ActionType = {
+  LOAD_FLIGHTS: `LOAD_FLIGHTS`,
+  SET_ACTIVE_FLIGHT: `SET_ACTIVE_FLIGHT`,
+};
+
+export const ActionCreator = {
+  loadFlights: (flights) => ({
+    type: `LOAD_FLIGHTS`,
+    payload: flights,
+  }),
+  setActiveFlight: () => ({
+    type: `SET_ACTIVE_FLIGHT`,
+    payload: 1,
+  }),
+};
+
+const adapter = (data) => ({
+  dateFlight: new Date(),
+  flight: data[0].email,
+  pinType: `XXXAK`,
+  pin: `XXXAK`,
+  timeFlight: 11111,
+  timeBlock: 11111,
+  timeNight: 11111,
+  timeBiologicalNight: 11111,
+  timeWork: 11111,
+  type: 0,
+  takeoff: {
+    name: `Томск(Богашево)-$`,
+    lat: 56.55,
+    long: 85.2,
+  },
+  landing: {
+    name: `Нячанг(Камрань Интл)`,
+    lat: 11.99805555,
+    long: 109.21944444,
+  },
+});
+
+export const Operation = {
+  loadFlights: () => (dispatch, getState, api) => {
+    return api.get(`/users?page=2`).then((response) => {      
+      dispatch(ActionCreator.loadFlights(adapter(response.data.data)));      
+    })
+    .catch((err) => {      
+      throw err;
+    });
+  }, 
+};
+
+export const reducer = (state = initialState, action) => {
+  switch (action.type) {
+
+  case ActionType.LOAD_FLIGHTS:
+    return extend(state, {flights: [...state.flights, action.payload]});
+
+  case ActionType.SET_ACTIVE_FLIGHT:
+    return extend(state, {flights: action.payload});
+
+    default:
+      return state;
+  }
+};
+
