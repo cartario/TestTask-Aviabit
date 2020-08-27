@@ -5,7 +5,7 @@ import '../App.css';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
-import FullCard from './fullcard';
+import Details from './details';
 import {flights} from '../mock'
 
 const App = () => {
@@ -18,12 +18,11 @@ const App = () => {
             <Main/>  
           </Route>
           <Route path="/details">
-            <FullCard data = {flights}/>
+            <Details data = {flights}/>
           </Route>
           <Footer/>
       </HashRouter>
-    </div>
-    
+    </div>    
   );
 }
 
