@@ -2,9 +2,17 @@ import {defaultName} from './const';
 import {getUniqValues} from './utils.js';
 
 
-export const getFlightsByActive = (flights, state) => {
-  const flightsCopy = flights.slice();
-  const flightsByYear = flightsCopy.filter((flight)=> flight.dateFlight.getFullYear() === Number(state));
+export const getFlightsByActive = (flights, state, isFactData) => {
+
+
+  const flightsByFact = flights.filter((flight)=>{
+    return isFactData ? flight.type === 1 : flight.type === 0;
+     
+  });
+
+  const flightsCopy = flightsByFact.slice();
+
+  const flightsByYear = flightsByFact.filter((flight)=> flight.dateFlight.getFullYear() === Number(state));
 
   const getSum = (value, type) => {    
     const sum = flightsCopy
@@ -23,23 +31,30 @@ export const getFlightsByActive = (flights, state) => {
   const getFilteredFlights = (isYear = false) => {
     let goalArr;
     isYear ? goalArr = flightsCopy : goalArr = flightsByYear;
+    
     return Array.from(getUniqValues(goalArr, isYear)).map((value) => {    
       return {
         dateFlight: goalArr.find((flight)=> {
           let result;
           isYear ? result = flight.dateFlight.getFullYear() : result = flight.dateFlight.getMonth();
+          
           return result===value;
+
         }).dateFlight,
         timeWork: getSum(value, `timeWork`),
         timeFlight: getSum(value, `timeFlight`),
         timeBlock: getSum(value, `timeBlock`),
+        
       };
     });
   };
 
   if(state === defaultName){
+    console.log(getFilteredFlights(true));
+    console.log(flightsByFact);
+    console.log(flights);
     return getFilteredFlights(true);
   }
-  console.log(getFilteredFlights(false))
+  
   return getFilteredFlights(false).reverse();
 };

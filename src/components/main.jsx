@@ -11,6 +11,7 @@ class Main extends React.Component {
 
     this.state = {
       value: `Все года`,
+      isFactData: false,
     };
   }
 
@@ -22,7 +23,9 @@ class Main extends React.Component {
           {this.state.value === defaultName ? ` всë время` : ` ${this.state.value} год`}
         </h1>
         <div className="main__input-container">          
-          <input className="main__input" type="checkbox" id="checkbox"/>
+          <input className="main__input" type="checkbox" id="checkbox" onChange={()=>{this.setState({
+            isFactData: !this.state.isFactData,
+          })}}/>
           <label className="main__label" htmlFor="checkbox">По факту</label>
         </div>
         <div className="main__container">
@@ -30,7 +33,7 @@ class Main extends React.Component {
             <option>
               {defaultName}
             </option>
-            {getUniqYears(flights).map((year) => <option key={year}>
+            {getUniqYears(flights, this.state.isFactData).map((year) => <option key={year}>
               {year}
             </option>)}
           </select>
@@ -47,7 +50,7 @@ class Main extends React.Component {
             </li>            
           </ul> 
         </div>
-        {getFlightsByActive(flights, this.state.value).map((data)=>
+        {getFlightsByActive(flights, this.state.value, this.state.isFactData).map((data)=>
         <Card 
           key={data.dateFlight}
           data={data}

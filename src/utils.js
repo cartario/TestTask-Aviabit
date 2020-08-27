@@ -1,5 +1,8 @@
-export const getUniqYears = (flights) => {
-  const yearsList = flights
+export const getUniqYears = (flights, isFactData) => {
+
+  const yearsList = flights.filter((flight)=>{
+    return isFactData ? flight.type === 1 : flight.type === 0;
+  })
     .map((flight)=>flight.dateFlight.getFullYear());
   return [...new Set(yearsList)];
 };
