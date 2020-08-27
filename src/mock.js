@@ -22,7 +22,7 @@ const generateFlight = () => ({
   timeWork: getRandomInt(37000,38000),
   type: getRandomInt(0,1),
   takeoff: {
-    name: `Томск(Богашево)-${getRandomInt(1,20)}`,
+    name: `Томск(Богашево)-${getRandomInt(1,9)}`,
     lat: 56.55,
     long: 85.2,
   },

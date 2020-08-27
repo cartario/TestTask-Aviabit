@@ -1,17 +1,12 @@
 import {defaultName} from './const';
 import {getUniqValues} from './utils.js';
 
-
 export const getFlightsByActive = (flights, state, isFactData) => {
-
-
   const flightsByFact = flights.filter((flight)=>{
-    return isFactData ? flight.type === 1 : flight.type === 0;
-     
+    return isFactData ? flight.type === 1 : flight.type === 0;     
   });
 
   const flightsCopy = flightsByFact.slice();
-
   const flightsByYear = flightsByFact.filter((flight)=> flight.dateFlight.getFullYear() === Number(state));
 
   const getSum = (value, type) => {    
@@ -43,18 +38,13 @@ export const getFlightsByActive = (flights, state, isFactData) => {
         }).dateFlight,
         timeWork: getSum(value, `timeWork`),
         timeFlight: getSum(value, `timeFlight`),
-        timeBlock: getSum(value, `timeBlock`),
-        
+        timeBlock: getSum(value, `timeBlock`),        
       };
     });
   };
 
-  if(state === defaultName){
-    console.log(getFilteredFlights(true));
-    console.log(flightsByFact);
-    console.log(flights);
+  if(state === defaultName){    
     return getFilteredFlights(true);
-  }
-  
+  }  
   return getFilteredFlights(false).reverse();
 };

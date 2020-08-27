@@ -1,6 +1,7 @@
 import React from 'react';
 import {defaultName} from '../const';
 import {getMonthName} from '../utils';
+import {Link} from 'react-router-dom';
 
 const Card = (props) =>{
   const {data, activeYear} = props;  
@@ -10,7 +11,7 @@ const Card = (props) =>{
   return (
     <ul className="main__card card">
       <li className="card__item">
-        {activeYear === defaultName ? dateFlight.getFullYear() : getMonthName(dateFlight.getMonth())}
+        <Link to="/details">{activeYear === defaultName ? dateFlight.getFullYear() : getMonthName(dateFlight.getMonth())}</Link>
       </li>
       <li className="card__item">
         {timeBlock}

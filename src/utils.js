@@ -17,4 +17,8 @@ export const getUniqValues = (flights, isYear = false) => {
   return [...new Set(list)];
 };
 
+export const getDateFormat = (date) => {
+  return `${date.getDate()} ${getMonthName(date.getMonth())} ${date.getFullYear()}`;
+};
+
 export const getMonthName = (value) => [`ЯНВ`,`ФЕВ`,`МАР`,`АПР`,`МАЙ`,`ИЮН`,`ИЮЛ`,`АВГ`,`СЕН`,`ОКТ`,`НОЯ`,`ДЕК`][value];

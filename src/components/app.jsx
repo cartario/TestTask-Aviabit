@@ -1,17 +1,29 @@
 import React from 'react';
+import {HashRouter, Route} from 'react-router-dom';
 import '../sass/app.scss';
 import '../App.css';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
+import FullCard from './fullcard';
+import {flights} from '../mock'
 
 const App = () => {
   return (
+    
     <div className="App">
-      <Header/>
-      <Main/>
-      <Footer/>
+      <HashRouter >        
+          <Header/>
+          <Route exact path="/">
+            <Main/>  
+          </Route>
+          <Route path="/details">
+            <FullCard data = {flights}/>
+          </Route>
+          <Footer/>
+      </HashRouter>
     </div>
+    
   );
 }
 
