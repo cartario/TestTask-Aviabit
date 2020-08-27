@@ -1,7 +1,8 @@
 import React from 'react';
 import {flights} from '../mock.js';
 import Card from './card.jsx';
-import {getFlightsByActive, getUniqYears} from '../utils';
+import {getUniqYears} from '../utils';
+import {getFlightsByActive} from '../reducer';
 import {defaultName} from '../const';
 
 class Main extends React.Component {
