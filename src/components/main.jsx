@@ -10,7 +10,7 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      value: `Все года`,      
+      value: `Все года`,
     };
 
     this._clickHandler = this._clickHandler.bind(this);
@@ -28,7 +28,7 @@ class Main extends React.Component {
           {this.state.value === defaultName ? ` всë время` : ` ${this.state.value} год`}
           <div>Данные по {this.props.isFactData ? `выполненным`:`плановым`} рейсам</div>
         </h1>
-        
+
         <Checkbox toggleHandler={this.props.toggleHandler}/>
 
         <div className="main__container">

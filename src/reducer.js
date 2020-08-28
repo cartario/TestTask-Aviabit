@@ -1,5 +1,5 @@
 import {defaultName} from './const';
-import {extend, getUniqValues} from './utils.js';
+import {extend, adapter, getUniqValues} from './utils.js';
 import {flights} from './mock';
 
 export const getFlightsByActive = (flights, state, isFactData) => {
@@ -88,29 +88,6 @@ export const ActionCreator = {
     payload: sumData,
   })
 };
-
-const adapter = (data) => ({
-  dateFlight: new Date(),
-  flight: `ОТВЕТ_СЕРВЕРА`,
-  pinType: `ОТВЕТ_СЕРВЕРА`,
-  pin: `ОТВЕТ_СЕРВЕРА`,
-  timeFlight: 11111,
-  timeBlock: 11111,
-  timeNight: 11111,
-  timeBiologicalNight: 11111,
-  timeWork: 11111,
-  type: 0,
-  takeoff: {
-    name: `ОТВЕТ_СЕРВЕРА`,
-    lat: 56.55,
-    long: 85.2,
-  },
-  landing: {
-    name: `ОТВЕТ_ОТ_СЕРВЕРА`,
-    lat: 11.99805555,
-    long: 109.21944444,
-  },
-});
 
 export const Operation = {
   loadFlights: () => (dispatch, getState, api) => {

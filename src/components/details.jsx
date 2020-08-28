@@ -9,11 +9,10 @@ import Checkbox from './checkbox';
 
 const Details = (props) =>{
   const {flights, activeFlight, isFactData, setSumData, toggleHandler} = props;
-  const {value, year} = activeFlight;
-
-  let filteredFlights;
+  const {value, year} = activeFlight;  
 
   const getFilteredFlights = (flights, year) => {
+    let filteredFlights;
     switch (true) {  
       case year===defaultName:        
         filteredFlights = flights
@@ -29,7 +28,7 @@ const Details = (props) =>{
     };
   };
 
-  getFilteredFlights(flights, year);
+  const filteredFlights = getFilteredFlights(flights, year);
 
   return (
     <>
