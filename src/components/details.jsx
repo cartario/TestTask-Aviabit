@@ -1,12 +1,63 @@
 import React from 'react';
 import {defaultName} from '../const';
-import {getDateFormat} from '../utils';
+import {getDateFormat, getMonthName, getRandomInt} from '../utils';
 import { Link } from 'react-router-dom';
+const names = [`dateFlight`,`timeWork`,`timeFlight`,`timeBlock`,`timeNight`,`timeBiologicalNight`,`flight`,`pinType`,`pin`,`type`,`takeoff`,`landing`]; 
+
+export const Row=(props)=> {
+  const {flight} = props;
+  return (
+    <tr className="details__row">
+      <td className="details__item" >{getDateFormat(flight.dateFlight)}</td>
+      <td className="details__item" >{flight.timeWork}</td>
+      <td className="details__item" >{flight.timeFlight}</td>
+      <td className="details__item" >{flight.timeBlock}</td>
+      <td className="details__item" >{flight.timeNight}</td>
+      <td className="details__item" >{flight.timeBiologicalNight}</td>
+      <td className="details__item" >{flight.flight}</td>
+      <td className="details__item" >{flight.pinType}</td>
+      <td className="details__item" >{flight.pin}</td>
+      <td className="details__item" >{flight.type}</td>
+      <td className="details__item" >{flight.takeoff.name}</td>
+      <td className="details__item" >{flight.landing.name}</td>
+    </tr>
+  );
+};
+
+export const SumFlight=(props) => {
+  const {filteredFlights} = props;
+  const a= filteredFlights.map((it)=>it.timeWork).reduce((a,b)=>{return a+b},0);
+  const b= filteredFlights.map((it)=>it.timeFlight).reduce((a,b)=>{return a+b},0);
+  const c= filteredFlights.map((it)=>it.timeBlock).reduce((a,b)=>{return a+b},0);
+  const d= filteredFlights.map((it)=>it.timeNight).reduce((a,b)=>{return a+b},0);
+  const e= filteredFlights.map((it)=>it.timeBiologicalNight).reduce((a,b)=>{return a+b},0);
+  return (
+    <tr className="details__row">
+            <td className="details__item" >{`Итого`}</td>
+            <td className="details__item" >{a}</td>
+            <td className="details__item" >{b}</td>
+            <td className="details__item" >{c}</td>
+            <td className="details__item" >{d}</td>
+            <td className="details__item" >{e}</td>
+            <td className="details__item" >---</td>
+            <td className="details__item" >---</td>
+            <td className="details__item" >---</td>
+            <td className="details__item" >---</td>
+            <td className="details__item" >---</td>
+            <td className="details__item" >---</td>
+          </tr>
+  );
+}
 
 const Details = (props) =>{
-  const {data, activeFlight} = props; 
+  const {data, activeFlight} = props;
+  const {value, year, isFactData} = activeFlight;
 
-  const names = Object.keys(data[0]);  
+  //case подробно по месяцу
+  const filteredFlights = data
+    .filter((flight)=>
+    (flight.type===(isFactData? 1:0))&&(flight.dateFlight.getFullYear()===Number(year))
+    &&(getMonthName(flight.dateFlight.getMonth())===value)); 
 
   return (<>
     <Link className="go-back" to="/">&lt; Вернуться назад</Link>
@@ -23,29 +74,22 @@ const Details = (props) =>{
           <td colSpan={names.length}>По выбранному</td>
         </tr>
 
+        {filteredFlights.map((flight)=>
+          <Row key={getRandomInt(1,1000000)} flight={flight}/>
+        )}
+
         <tr className="details__row" >
-          <td colSpan={names.length}>___</td>
+          <td colSpan={names.length}>Суммарно за {value}</td>
         </tr>
+
+        <SumFlight filteredFlights={filteredFlights}/>        
 
         <tr className="details__row" >
           <td colSpan={names.length}>По всем полетам</td>
         </tr>
 
         {data.map((flight)=>
-          <tr className="details__row" key={flight.timeWork}>
-            <td className="details__item" >{getDateFormat(flight.dateFlight)}</td>
-            <td className="details__item" >{flight.timeWork}</td>
-            <td className="details__item" >{flight.timeFlight}</td>
-            <td className="details__item" >{flight.timeBlock}</td>
-            <td className="details__item" >{flight.timeNight}</td>
-            <td className="details__item" >{flight.timeBiologicalNight}</td>
-            <td className="details__item" >{flight.flight}</td>
-            <td className="details__item" >{flight.pinType}</td>
-            <td className="details__item" >{flight.pin}</td>
-            <td className="details__item" >{flight.type}</td>
-            <td className="details__item" >{flight.takeoff.name}</td>
-            <td className="details__item" >{flight.landing.name}</td>
-          </tr>
+          <Row key={getRandomInt(1,1000000)} flight={flight}/>
         )}
         
       </tbody>

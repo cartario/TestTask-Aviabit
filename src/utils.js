@@ -26,3 +26,7 @@ export const getDateFormat = (date) => {
 };
 
 export const getMonthName = (value) => [`ЯНВ`,`ФЕВ`,`МАР`,`АПР`,`МАЙ`,`ИЮН`,`ИЮЛ`,`АВГ`,`СЕН`,`ОКТ`,`НОЯ`,`ДЕК`][value];
+
+export const getRandomInt = (min, max)=> {  
+  return Math.floor(min + Math.random() * (max + 1 - min));
+};
