@@ -1,5 +1,4 @@
 import React from 'react';
-// import {flights} from '../mock.js';
 import Card from './card.jsx';
 import {getUniqYears} from '../utils';
 import {getFlightsByActive} from '../reducer';
@@ -10,8 +9,7 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      value: `Все года`,
-      
+      value: `Все года`,      
     };
 
     this._clickHandler = this._clickHandler.bind(this);
@@ -60,7 +58,7 @@ class Main extends React.Component {
           data={data}
           activeYear={this.state.value}
           clickHandler = {this._clickHandler}
-          />)}        
+        />)}        
       </main>
     );
   }

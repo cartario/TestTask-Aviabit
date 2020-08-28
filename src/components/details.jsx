@@ -101,7 +101,7 @@ const Details = (props) =>{
     </div>  
 
     <Chart />
-
+    
     <div className="details-container">
     <table className="details" border="1">
       <tbody>      
@@ -134,9 +134,7 @@ const Details = (props) =>{
       </tbody>
     </table>
 
-    </div>
-
-    
+    </div>  
     
     </>
   );

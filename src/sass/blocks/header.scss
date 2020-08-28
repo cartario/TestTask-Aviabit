@@ -1,0 +1,32 @@
+.header {
+  background-color: $color-blue;
+}
+
+.nav {
+  display: flex;
+  color: white;
+  font-weight: bold;
+}
+
+.nav__logo {
+  width: 10%;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+.nav__menu {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid white;
+}
+
+@media (max-width: $tablet-width) {
+  .nav__logo {
+    display: none;
+  }
+
+  .nav__menu {
+    width: 100%;
+    padding: 20px;
+  }
+}

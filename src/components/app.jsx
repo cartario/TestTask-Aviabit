@@ -1,7 +1,6 @@
 import React from 'react';
 import {HashRouter, Route} from 'react-router-dom';
 import '../sass/app.scss';
-import '../App.css';
 import Header from './header';
 import Main from './main';
 import Footer from './footer';
@@ -10,7 +9,7 @@ import Details from './details';
 import { connect } from 'react-redux';
 import {ActionCreator} from '../reducer.js';
 
-import withToggle from './withToggle'
+import withToggle from '../hocs/withToggle';
 
 const App = (props) => {
   const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData} = props;

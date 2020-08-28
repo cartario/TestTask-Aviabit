@@ -1,0 +1,11 @@
+.chart-container{
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media (max-width: $tablet-width) {
+  .chart-container{
+    width: 100%;
+    
+  }
+}
