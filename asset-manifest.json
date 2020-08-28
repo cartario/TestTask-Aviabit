@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/aviabit/static/css/main.1af3e5be.chunk.css",
-    "main.js": "/aviabit/static/js/main.1938a78b.chunk.js",
-    "main.js.map": "/aviabit/static/js/main.1938a78b.chunk.js.map",
+    "main.js": "/aviabit/static/js/main.20a32f5f.chunk.js",
+    "main.js.map": "/aviabit/static/js/main.20a32f5f.chunk.js.map",
     "runtime-main.js": "/aviabit/static/js/runtime-main.12673ce2.js",
     "runtime-main.js.map": "/aviabit/static/js/runtime-main.12673ce2.js.map",
     "static/js/2.50796e74.chunk.js": "/aviabit/static/js/2.50796e74.chunk.js",
     "static/js/2.50796e74.chunk.js.map": "/aviabit/static/js/2.50796e74.chunk.js.map",
     "index.html": "/aviabit/index.html",
-    "precache-manifest.fe9d504c6117ba2c114020ab401e2eae.js": "/aviabit/precache-manifest.fe9d504c6117ba2c114020ab401e2eae.js",
+    "precache-manifest.f58d5e17a2a604d02a20c6278e37d021.js": "/aviabit/precache-manifest.f58d5e17a2a604d02a20c6278e37d021.js",
     "service-worker.js": "/aviabit/service-worker.js",
     "static/css/main.1af3e5be.chunk.css.map": "/aviabit/static/css/main.1af3e5be.chunk.css.map",
     "static/js/2.50796e74.chunk.js.LICENSE.txt": "/aviabit/static/js/2.50796e74.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.12673ce2.js",
     "static/js/2.50796e74.chunk.js",
     "static/css/main.1af3e5be.chunk.css",
-    "static/js/main.1938a78b.chunk.js"
+    "static/js/main.20a32f5f.chunk.js"
   ]
 }
