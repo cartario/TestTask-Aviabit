@@ -26,7 +26,7 @@ const App = (props) => {
           />  
         </Route>
         <Route path="/details">
-          <Details data = {flights}
+          <Details flights = {flights}
           activeFlight = {activeFlight}
           toggleHandler = {toggleHandler}
           isFactData = {isFactData}

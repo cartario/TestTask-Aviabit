@@ -3,6 +3,7 @@ import Card from './card.jsx';
 import {getUniqYears} from '../utils';
 import {getFlightsByActive} from '../reducer';
 import {defaultName} from '../const';
+import Checkbox from './checkbox';
 
 class Main extends React.Component {
   constructor(props){
@@ -27,10 +28,9 @@ class Main extends React.Component {
           {this.state.value === defaultName ? ` всë время` : ` ${this.state.value} год`}
           <div>Данные по {this.props.isFactData ? `выполненным`:`плановым`} рейсам</div>
         </h1>
-        <div className="main__input-container">          
-          <input className="main__input checkbox" type="checkbox" id="checkbox" onChange={this.props.toggleHandler}/>
-          <label className="main__label checkbox__label" htmlFor="checkbox">По факту</label>
-        </div>
+        
+        <Checkbox toggleHandler={this.props.toggleHandler}/>
+
         <div className="main__container">
           <select value={this.state.value} className="main__select" onChange={(e)=>{this.setState({value: e.target.value})}}>
             <option>

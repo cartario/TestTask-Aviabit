@@ -1,5 +1,6 @@
 .go-back{
-  display: block;  
+  display: block;
+  padding: 15px;  
   text-align: left;  
 }
 
@@ -16,14 +17,19 @@
   width: 100%;
   text-align: center;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  
+  border-collapse: collapse;  
 }
 
 .details__item, .details__title {
   padding: 8px;
   border: 1px solid white;
   border-radius: 10px;
+}
+
+.details__item--section{
+  font-weight: bold;
+  background-color: $color-blue;
+  color: white;
 }
 
 .details__row:nth-child(even){
