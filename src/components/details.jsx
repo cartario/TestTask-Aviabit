@@ -2,6 +2,8 @@ import React from 'react';
 import {defaultName} from '../const';
 import {getDateFormat, getMonthName, getRandomInt} from '../utils';
 import { Link } from 'react-router-dom';
+import Chart from './chart';
+
 const names = [`dateFlight`,`timeWork`,`timeFlight`,`timeBlock`,`timeNight`,`timeBiologicalNight`,`flight`,`pinType`,`pin`,`type`,`takeoff`,`landing`]; 
 
 export const Row=(props)=> {
@@ -25,12 +27,24 @@ export const Row=(props)=> {
 };
 
 export const SumFlight=(props) => {
-  const {filteredFlights} = props;
+  const {filteredFlights, setSumData} = props;
   const a= filteredFlights.map((it)=>it.timeWork).reduce((a,b)=>{return a+b},0);
   const b= filteredFlights.map((it)=>it.timeFlight).reduce((a,b)=>{return a+b},0);
   const c= filteredFlights.map((it)=>it.timeBlock).reduce((a,b)=>{return a+b},0);
   const d= filteredFlights.map((it)=>it.timeNight).reduce((a,b)=>{return a+b},0);
   const e= filteredFlights.map((it)=>it.timeBiologicalNight).reduce((a,b)=>{return a+b},0);
+
+  const sumData = ({
+    timeWork: a,
+    timeFlight: b,
+    timeBlock: c,
+    timeNight: d,
+    timeBiologicalNight: e,
+  });
+
+  
+  setSumData(sumData);
+
   return (
     <tr className="details__row">
             <td className="details__item" >{`Итого`}</td>
@@ -50,7 +64,7 @@ export const SumFlight=(props) => {
 }
 
 const Details = (props) =>{
-  const {data, activeFlight, isFactData} = props;
+  const {data, activeFlight, isFactData, setSumData} = props;
   const {value, year} = activeFlight;
   let filteredFlights;
 
@@ -74,17 +88,20 @@ const Details = (props) =>{
 
   return (<>
     <Link className="go-back" to="/">&lt; Вернуться назад</Link>
-  <h2 className="details-header">
-    Детальная информация 
-    {`${value ? ` за ${value}`: ``} ${year === defaultName 
-      ? `` : year} . Данные по ${isFactData 
-      ? `фактическим`
-      : `плановым`} рейсам`}
-  </h2>
+    <h2 className="details-header">
+      Детальная информация 
+      {`${value ? ` за ${value}`: ``} ${year === defaultName 
+        ? `` : year} . Данные по ${isFactData 
+        ? `фактическим`
+        : `плановым`} рейсам`}
+    </h2>
     <div>          
-      <input className="checkbox" type="checkbox" id="checkbox" onChange={props.toggleHandler}/>
+      <input className="checkbox" type="checkbox" id="checkbox" onChange={props.toggleHandler} autoFocus/>
       <label className="heckbox__label" htmlFor="checkbox">По факту</label>
-    </div>
+    </div>  
+
+    <Chart />
+
     <div className="details-container">
     <table className="details" border="1">
       <tbody>      
@@ -104,7 +121,7 @@ const Details = (props) =>{
           <td colSpan={names.length}>Суммарно за {value}</td>
         </tr>
 
-        <SumFlight filteredFlights={filteredFlights}/>        
+        <SumFlight filteredFlights={filteredFlights} setSumData={setSumData}/>        
 
         <tr className="details__row" >
           <td colSpan={names.length}>По всем полетам</td>
@@ -118,6 +135,8 @@ const Details = (props) =>{
     </table>
 
     </div>
+
+    
     
     </>
   );

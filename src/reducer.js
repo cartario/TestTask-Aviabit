@@ -57,11 +57,19 @@ const initialState = {
     value: ``,
     isFactData: ``,
   },
+  sumData: {
+    timeWork: 0,
+    timeFlight: 0,
+    timeBlock: 0,
+    timeNight: 0,
+    timeBiologicalNight: 0,
+  },
 };
 
 const ActionType = {
   LOAD_FLIGHTS: `LOAD_FLIGHTS`,
   SET_ACTIVE_FLIGHT: `SET_ACTIVE_FLIGHT`,
+  SET_SUM_DATA: `SET_SUM_DATA`,
 };
 
 export const ActionCreator = {
@@ -69,13 +77,16 @@ export const ActionCreator = {
     type: `LOAD_FLIGHTS`,
     payload: flights,
   }),
-  setActiveFlight: (value, year, isFactData) => {
-    
+  setActiveFlight: (value, year, isFactData) => {    
     return ({
       type: `SET_ACTIVE_FLIGHT`,
       payload: {value: value, year: year, isFactData: isFactData},
     })
   },
+  setSumData: (sumData) => ({
+    type: ActionType.SET_SUM_DATA,
+    payload: sumData,
+  })
 };
 
 const adapter = (data) => ({
@@ -118,9 +129,11 @@ export const reducer = (state = initialState, action) => {
   case ActionType.LOAD_FLIGHTS:
     return extend(state, {flights: [...state.flights, action.payload]});
 
-  case ActionType.SET_ACTIVE_FLIGHT:
-    
+  case ActionType.SET_ACTIVE_FLIGHT:    
     return extend(state, {activeFlight: action.payload});
+
+  case ActionType.SET_SUM_DATA:    
+    return extend(state, {sumData: action.payload});
 
     default:
       return state;

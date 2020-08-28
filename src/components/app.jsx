@@ -13,7 +13,7 @@ import {ActionCreator} from '../reducer.js';
 import withToggle from './withToggle'
 
 const App = (props) => {
-  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData} = props;
+  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData} = props;
   return (    
     <div className="App">
       <HashRouter >        
@@ -31,6 +31,7 @@ const App = (props) => {
           activeFlight = {activeFlight}
           toggleHandler = {toggleHandler}
           isFactData = {isFactData}
+          setSumData = {setSumData}
           />
         </Route>
         <Footer/>
@@ -47,6 +48,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setActiveFlight: (value, year, isFactData) => {
     dispatch(ActionCreator.setActiveFlight(value, year, isFactData));    
+  },
+  setSumData: (sumData) => {
+    dispatch(ActionCreator.setSumData(sumData));
   },
 });
 
