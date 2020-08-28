@@ -71,15 +71,20 @@ const Details = (props) =>{
   }
 
   getFilteredFlights(year);
- 
-
-
-
 
   return (<>
     <Link className="go-back" to="/">&lt; Вернуться назад</Link>
-  <h2 className="details-header">Детальная информация за {`${activeFlight.value} ${activeFlight.year} фактически?-${activeFlight.isFactData}`}</h2>
-
+  <h2 className="details-header">
+    Детальная информация 
+    {`${activeFlight.value ? ` за ${activeFlight.value}`: ``} ${activeFlight.year === defaultName 
+      ? `` : activeFlight.year} . Данные по ${activeFlight.isFactData 
+      ? `фактическим`
+      : `плановым`} рейсам`}
+  </h2>
+    <div>          
+      <input className="checkbox" type="checkbox" id="checkbox"/>
+      <label className="heckbox__label" htmlFor="checkbox">По факту</label>
+    </div>
     <div className="details-container">
     <table className="details" border="1">
       <tbody>      

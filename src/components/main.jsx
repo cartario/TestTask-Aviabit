@@ -27,12 +27,13 @@ class Main extends React.Component {
         <h1 className="main__title">
           Информация по налету командира воздушного судна за 
           {this.state.value === defaultName ? ` всë время` : ` ${this.state.value} год`}
+          <div>Данные по {this.state.isFactData ? `выполненным`:`плановым`} рейсам</div>
         </h1>
         <div className="main__input-container">          
-          <input className="main__input" type="checkbox" id="checkbox" onChange={()=>{this.setState({
+          <input className="main__input checkbox" type="checkbox" id="checkbox" onChange={()=>{this.setState({
             isFactData: !this.state.isFactData,
           })}}/>
-          <label className="main__label" htmlFor="checkbox">По факту</label>
+          <label className="main__label checkbox__label" htmlFor="checkbox">По факту</label>
         </div>
         <div className="main__container">
           <select value={this.state.value} className="main__select" onChange={(e)=>{this.setState({value: e.target.value})}}>
