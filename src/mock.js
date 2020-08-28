@@ -11,7 +11,7 @@ const generateFlights = (count) => {
 };
 
 const generateFlight = () => ({
-  dateFlight: getRandomDate(new Date(2020, 0, 1), new Date()),
+  dateFlight: getRandomDate(new Date(2010, 0, 1), new Date()),
   flight: `AB-33${getRandomInt(10,80)}`,
   pinType: `B-757-${getRandomInt(100,200)}`,
   pin: `XXXAK`,

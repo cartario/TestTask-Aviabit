@@ -1,5 +1,5 @@
 import React from 'react';
-import {flights} from '../mock.js';
+// import {flights} from '../mock.js';
 import Card from './card.jsx';
 import {getUniqYears} from '../utils';
 import {getFlightsByActive} from '../reducer';
@@ -39,24 +39,25 @@ class Main extends React.Component {
             <option>
               {defaultName}
             </option>
-            {getUniqYears(flights, this.state.isFactData).map((year) => <option key={year}>
+            {getUniqYears(this.props.flights, this.state.isFactData).map((year) => <option key={year}>
               {year}
             </option>)}
           </select>
           <ul className="main__list">
           
-            <li className="main__item">
-              TimeBlock
-            </li>
+
             <li className="main__item">
               TimeWork, с
             </li>
             <li className="main__item">
               TimeFlight, с
-            </li>            
+            </li> 
+            <li className="main__item">
+              TimeBlock
+            </li>           
           </ul> 
         </div>
-        {getFlightsByActive(flights, this.state.value, this.state.isFactData).map((data)=>
+        {getFlightsByActive(this.props.flights, this.state.value, this.state.isFactData).sort((a,b)=>b.dateFlight - a.dateFlight).map((data)=>
         <Card 
           key={data.dateFlight}
           data={data}

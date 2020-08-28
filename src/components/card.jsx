@@ -12,16 +12,16 @@ const Card = (props) =>{
     <ul className="main__card card">
       <li className="card__item">
         <Link onClick={(e)=>{props.clickHandler(e.target.textContent)}} to="/details">{activeYear === defaultName ? dateFlight.getFullYear() : getMonthName(dateFlight.getMonth())}</Link>
-      </li>
-      <li className="card__item">
-        {timeBlock}
-      </li>
+      </li>      
       <li className="card__item">
         {timeWork}
       </li>
       <li className="card__item">
         {timeFlight}
-      </li>            
+      </li>  
+      <li className="card__item">
+        {timeBlock}
+      </li>          
     </ul>  
   );
 }

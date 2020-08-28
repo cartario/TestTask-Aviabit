@@ -80,9 +80,9 @@ export const ActionCreator = {
 
 const adapter = (data) => ({
   dateFlight: new Date(),
-  flight: data[0].email,
-  pinType: `XXXAK`,
-  pin: `XXXAK`,
+  flight: `ОТВЕТ_ОТ_СЕРВЕРА`,
+  pinType: `ОТВЕТ_ОТ_СЕРВЕРА`,
+  pin: `ОТВЕТ_ОТ_СЕРВЕРА`,
   timeFlight: 11111,
   timeBlock: 11111,
   timeNight: 11111,
@@ -90,12 +90,12 @@ const adapter = (data) => ({
   timeWork: 11111,
   type: 0,
   takeoff: {
-    name: `Томск(Богашево)-$`,
+    name: `ОТВЕТ_ОТ_СЕРВЕРА`,
     lat: 56.55,
     long: 85.2,
   },
   landing: {
-    name: `Нячанг(Камрань Интл)`,
+    name: `ОТВЕТ_ОТ_СЕРВЕРА`,
     lat: 11.99805555,
     long: 109.21944444,
   },

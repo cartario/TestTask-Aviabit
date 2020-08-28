@@ -52,12 +52,29 @@ export const SumFlight=(props) => {
 const Details = (props) =>{
   const {data, activeFlight} = props;
   const {value, year, isFactData} = activeFlight;
+  let filteredFlights;
 
-  //case подробно по месяцу
-  const filteredFlights = data
-    .filter((flight)=>
-    (flight.type===(isFactData? 1:0))&&(flight.dateFlight.getFullYear()===Number(year))
-    &&(getMonthName(flight.dateFlight.getMonth())===value)); 
+  const getFilteredFlights = (year) => {
+    switch (true) {  
+      case year===defaultName:        
+        filteredFlights = data
+        .filter((flight)=> (flight.dateFlight.getFullYear()===Number(value))&&(flight.type===(isFactData? 1:0)));
+        return filteredFlights;
+    
+      default:          
+          filteredFlights = data
+          .filter((flight)=>
+          (flight.type===(isFactData? 1:0))&&(flight.dateFlight.getFullYear()===Number(year))
+          &&(getMonthName(flight.dateFlight.getMonth())===value)); 
+        return filteredFlights;        
+      };
+  }
+
+  getFilteredFlights(year);
+ 
+
+
+
 
   return (<>
     <Link className="go-back" to="/">&lt; Вернуться назад</Link>
@@ -88,7 +105,7 @@ const Details = (props) =>{
           <td colSpan={names.length}>По всем полетам</td>
         </tr>
 
-        {data.map((flight)=>
+        {data.sort((a,b)=>b.dateFlight - a.dateFlight).map((flight)=>
           <Row key={getRandomInt(1,1000000)} flight={flight}/>
         )}
         

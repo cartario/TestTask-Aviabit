@@ -19,7 +19,7 @@ const App = (props) => {
         <Route exact path="/">
           <Main
             setActiveFlight = {setActiveFlight}
-            
+            flights = {flights}
           />  
         </Route>
         <Route path="/details">
