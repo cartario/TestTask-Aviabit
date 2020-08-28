@@ -50,8 +50,8 @@ export const SumFlight=(props) => {
 }
 
 const Details = (props) =>{
-  const {data, activeFlight} = props;
-  const {value, year, isFactData} = activeFlight;
+  const {data, activeFlight, isFactData} = props;
+  const {value, year} = activeFlight;
   let filteredFlights;
 
   const getFilteredFlights = (year) => {
@@ -76,13 +76,13 @@ const Details = (props) =>{
     <Link className="go-back" to="/">&lt; Вернуться назад</Link>
   <h2 className="details-header">
     Детальная информация 
-    {`${activeFlight.value ? ` за ${activeFlight.value}`: ``} ${activeFlight.year === defaultName 
-      ? `` : activeFlight.year} . Данные по ${activeFlight.isFactData 
+    {`${value ? ` за ${value}`: ``} ${year === defaultName 
+      ? `` : year} . Данные по ${isFactData 
       ? `фактическим`
       : `плановым`} рейсам`}
   </h2>
     <div>          
-      <input className="checkbox" type="checkbox" id="checkbox"/>
+      <input className="checkbox" type="checkbox" id="checkbox" onChange={props.toggleHandler}/>
       <label className="heckbox__label" htmlFor="checkbox">По факту</label>
     </div>
     <div className="details-container">

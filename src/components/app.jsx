@@ -10,8 +10,10 @@ import Details from './details';
 import { connect } from 'react-redux';
 import {ActionCreator} from '../reducer.js';
 
+import withToggle from './withToggle'
+
 const App = (props) => {
-  const {flights, activeFlight, setActiveFlight} = props;
+  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData} = props;
   return (    
     <div className="App">
       <HashRouter >        
@@ -19,12 +21,16 @@ const App = (props) => {
         <Route exact path="/">
           <Main
             setActiveFlight = {setActiveFlight}
+            toggleHandler = {toggleHandler}
+            isFactData = {isFactData}
             flights = {flights}
           />  
         </Route>
         <Route path="/details">
           <Details data = {flights}
           activeFlight = {activeFlight}
+          toggleHandler = {toggleHandler}
+          isFactData = {isFactData}
           />
         </Route>
         <Footer/>
@@ -45,4 +51,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withToggle(App));

@@ -11,14 +11,14 @@ class Main extends React.Component {
 
     this.state = {
       value: `Все года`,
-      isFactData: false,
+      
     };
 
     this._clickHandler = this._clickHandler.bind(this);
   }
 
   _clickHandler(value){    
-    this.props.setActiveFlight(value, this.state.value, this.state.isFactData);
+    this.props.setActiveFlight(value, this.state.value, this.props.isFactData);
   }
 
   render(){
@@ -27,12 +27,10 @@ class Main extends React.Component {
         <h1 className="main__title">
           Информация по налету командира воздушного судна за 
           {this.state.value === defaultName ? ` всë время` : ` ${this.state.value} год`}
-          <div>Данные по {this.state.isFactData ? `выполненным`:`плановым`} рейсам</div>
+          <div>Данные по {this.props.isFactData ? `выполненным`:`плановым`} рейсам</div>
         </h1>
         <div className="main__input-container">          
-          <input className="main__input checkbox" type="checkbox" id="checkbox" onChange={()=>{this.setState({
-            isFactData: !this.state.isFactData,
-          })}}/>
+          <input className="main__input checkbox" type="checkbox" id="checkbox" onChange={this.props.toggleHandler}/>
           <label className="main__label checkbox__label" htmlFor="checkbox">По факту</label>
         </div>
         <div className="main__container">
@@ -40,13 +38,11 @@ class Main extends React.Component {
             <option>
               {defaultName}
             </option>
-            {getUniqYears(this.props.flights, this.state.isFactData).map((year) => <option key={year}>
+            {getUniqYears(this.props.flights, this.props.isFactData).map((year) => <option key={year}>
               {year}
             </option>)}
           </select>
-          <ul className="main__list">
-          
-
+          <ul className="main__list">     
             <li className="main__item">
               TimeWork, с
             </li>
@@ -58,7 +54,7 @@ class Main extends React.Component {
             </li>           
           </ul> 
         </div>
-        {getFlightsByActive(this.props.flights, this.state.value, this.state.isFactData).sort((a,b)=>b.dateFlight - a.dateFlight).map((data)=>
+        {getFlightsByActive(this.props.flights, this.state.value, this.props.isFactData).sort((a,b)=>b.dateFlight - a.dateFlight).map((data)=>
         <Card 
           key={data.dateFlight}
           data={data}
