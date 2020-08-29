@@ -12,8 +12,8 @@ import {ActionCreator} from '../reducer.js';
 import withToggle from '../hocs/withToggle';
 
 const App = (props) => {
-  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData, setFilteredFlights, currentFlight} = props;
-  console.log(currentFlight)
+  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData, setFilteredFlights, currentFlights} = props;
+
   return (    
     <div className="App">
       <HashRouter >        
@@ -33,7 +33,7 @@ const App = (props) => {
           activeFlight = {activeFlight}
           toggleHandler = {toggleHandler}
           isFactData = {isFactData}
-          
+          currentFlights= {currentFlights}
           />
         </Route>
         <Footer/>
@@ -45,7 +45,7 @@ const App = (props) => {
 const mapStateToProps = (state) => ({
   flights: state.FLIGHTS.flights,
   activeFlight: state.FLIGHTS.activeFlight,
-  currentFlight: state.FLIGHTS.currentFlight,
+  currentFlights: state.FLIGHTS.currentFlights,
 });
 
 const mapDispatchToProps = (dispatch) => ({

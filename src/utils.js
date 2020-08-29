@@ -6,7 +6,7 @@ export const extend = (oldData, newData) => {
 
 export const getUniqYears = (flights, isFactData) => {
   return [...new Set(flights
-    .filter((flight)=>isFactData ? flight.type === 1 : flight.type === 0)
+    .filter((flight)=>isFactData ? flight.type === 0 : flight.type === 1)
     .map((flight)=>flight.dateFlight.getFullYear())
     .sort((a,b)=> b-a))];
 };
