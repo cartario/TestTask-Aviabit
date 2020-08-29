@@ -1,34 +1,18 @@
 import React from 'react';
 import {defaultName, names} from '../const';
-import {getMonthName, getRandomInt} from '../utils';
+import {getRandomInt, getCurrentFlights} from '../utils';
 import { Link } from 'react-router-dom';
 import Chart from './chart';
 import SumResult from './sum-result';
 import Row from './row';
 import Checkbox from './checkbox';
+import withSum from '../hocs/withSum';
 
 const Details = (props) =>{
   const {flights, activeFlight, isFactData, setSumData, toggleHandler} = props;
-  const {value, year} = activeFlight;  
+  const {value, year} = activeFlight;
 
-  const getFilteredFlights = (flights, year) => {
-    let filteredFlights;
-    switch (true) {  
-      case year===defaultName:        
-        filteredFlights = flights
-        .filter((flight)=> (flight.dateFlight.getFullYear()===Number(value))&&(flight.type===(isFactData? 1:0)));
-        return filteredFlights;
-    
-      default:          
-          filteredFlights = flights
-          .filter((flight)=>
-          (flight.type===(isFactData? 1:0))&&(flight.dateFlight.getFullYear()===Number(year))
-          &&(getMonthName(flight.dateFlight.getMonth())===value)); 
-        return filteredFlights;        
-    };
-  };
-
-  const filteredFlights = getFilteredFlights(flights, year);
+  const filteredFlights = getCurrentFlights(flights, year, value, isFactData);
 
   return (
     <>
@@ -41,7 +25,7 @@ const Details = (props) =>{
           : `плановым`} рейсам`}
       </h2>
 
-      <Checkbox toggleHandler = {toggleHandler}/>
+      <Checkbox toggleHandler = {toggleHandler} isFactData={isFactData}/>
       <Chart />
       
       <div className="details-container">
@@ -76,4 +60,4 @@ const Details = (props) =>{
   );
 }
 
-export default Details;
+export default withSum(Details);

@@ -12,7 +12,8 @@ import {ActionCreator} from '../reducer.js';
 import withToggle from '../hocs/withToggle';
 
 const App = (props) => {
-  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData} = props;
+  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData, setFilteredFlights, currentFlight} = props;
+  console.log(currentFlight)
   return (    
     <div className="App">
       <HashRouter >        
@@ -23,6 +24,8 @@ const App = (props) => {
             toggleHandler = {toggleHandler}
             isFactData = {isFactData}
             flights = {flights}
+            setSumData = {setSumData}
+            setFilteredFlights={setFilteredFlights}
           />  
         </Route>
         <Route path="/details">
@@ -30,7 +33,7 @@ const App = (props) => {
           activeFlight = {activeFlight}
           toggleHandler = {toggleHandler}
           isFactData = {isFactData}
-          setSumData = {setSumData}
+          
           />
         </Route>
         <Footer/>
@@ -42,6 +45,7 @@ const App = (props) => {
 const mapStateToProps = (state) => ({
   flights: state.FLIGHTS.flights,
   activeFlight: state.FLIGHTS.activeFlight,
+  currentFlight: state.FLIGHTS.currentFlight,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -50,6 +54,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setSumData: (sumData) => {
     dispatch(ActionCreator.setSumData(sumData));
+  },
+  setFilteredFlights: (value, year, isFactData) => {
+    dispatch(ActionCreator.setFilteredFlights(value, year, isFactData));
   },
 });
 

@@ -1,10 +1,10 @@
 import {defaultName} from './const';
-import {extend, adapter, getUniqValues} from './utils.js';
+import {extend, adapter, getUniqValues, getMonthName} from './utils.js';
 import {flights} from './mock';
 
 export const getFlightsByActive = (flights, state, isFactData) => {
   const flightsByFact = flights.filter((flight)=>{
-    return isFactData ? flight.type === 1 : flight.type === 0;     
+    return isFactData ? flight.type === 0 : flight.type === 1;     
   });
 
   const flightsCopy = flightsByFact.slice();
@@ -64,12 +64,15 @@ const initialState = {
     timeNight: 0,
     timeBiologicalNight: 0,
   },
+
+  currentFlights: [],
 };
 
 const ActionType = {
   LOAD_FLIGHTS: `LOAD_FLIGHTS`,
   SET_ACTIVE_FLIGHT: `SET_ACTIVE_FLIGHT`,
   SET_SUM_DATA: `SET_SUM_DATA`,
+  SET_CURRENT_FLIGHTS: `SET_CURRENT_FLIGHTS`,
 };
 
 export const ActionCreator = {
@@ -86,7 +89,11 @@ export const ActionCreator = {
   setSumData: (sumData) => ({
     type: ActionType.SET_SUM_DATA,
     payload: sumData,
-  })
+  }),
+  setFilteredFlights: (year, value, isFactData) => ({
+    type: ActionType.SET_CURRENT_FLIGHTS,
+    payload: {year: year, value: value, isFactData: isFactData},
+  }),
 };
 
 export const Operation = {
@@ -112,6 +119,23 @@ export const reducer = (state = initialState, action) => {
   case ActionType.SET_SUM_DATA:    
     return extend(state, {sumData: action.payload});
 
+  case ActionType.SET_CURRENT_FLIGHTS:        
+        if(action.payload.value === defaultName){          
+          const currentFlightsByDefaultName = state.flights
+          .filter((flight)=> {            
+            return (flight.dateFlight.getFullYear()===Number(action.payload.year))
+            &&(flight.type===(action.payload.isFactData? 0 : 1))
+          });
+          return extend(state, {currentFlights: currentFlightsByDefaultName});
+        } else {
+          const currentFlights = state.flights
+          .filter((flight)=> {            
+            return (flight.dateFlight.getFullYear()===Number(action.payload.value))
+            &&(getMonthName(flight.dateFlight.getMonth())===action.payload.year)
+            &&(flight.type===(action.payload.isFactData? 0 : 1))
+          });
+          return extend(state, {currentFlights: currentFlights});
+        }
     default:
       return state;
   }

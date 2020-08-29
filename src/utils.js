@@ -1,3 +1,5 @@
+import {defaultName} from './const';
+
 export const extend = (oldData, newData) => {
   return Object.assign({}, oldData, newData);
 };
@@ -27,6 +29,25 @@ export const getMonthName = (value) => [`ЯНВ`,`ФЕВ`,`МАР`,`АПР`,`М�
 
 export const getRandomInt = (min, max)=> {  
   return Math.floor(min + Math.random() * (max + 1 - min));
+};
+
+export const getCurrentFlights = (flights, year, value, isFactData) => {
+  
+  let currentFlights;
+  switch (true) {  
+    case year===defaultName:        
+    currentFlights = flights
+      .filter((flight)=> (flight.dateFlight.getFullYear()===Number(value))&&(flight.type===(isFactData? 0 : 1)));
+      return currentFlights;
+  
+    default:          
+    currentFlights = flights
+        .filter((flight)=>
+        (flight.type===(isFactData? 0 : 1))&&(flight.dateFlight.getFullYear()===Number(year))
+        &&(getMonthName(flight.dateFlight.getMonth())===value)); 
+        
+      return currentFlights;        
+  };
 };
 
 export const adapter = (data) => ({

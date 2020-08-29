@@ -11,6 +11,13 @@ class Main extends React.Component {
 
     this.state = {
       value: `Все года`,
+      sumData: {
+        timeWork: 0,
+        timeFlight: 0,
+        timeBlock: 0,
+        timeNight: 0,
+        timeBiologicalNight: 0,
+      },
     };
 
     this._clickHandler = this._clickHandler.bind(this);
@@ -18,6 +25,8 @@ class Main extends React.Component {
 
   _clickHandler(value){    
     this.props.setActiveFlight(value, this.state.value, this.props.isFactData);
+    this.props.setSumData(this.state.sumData);
+    this.props.setFilteredFlights(value, this.state.value, this.props.isFactData);
   }
 
   render(){
@@ -29,7 +38,7 @@ class Main extends React.Component {
           <div>Данные по {this.props.isFactData ? `выполненным`:`плановым`} рейсам</div>
         </h1>
 
-        <Checkbox toggleHandler={this.props.toggleHandler}/>
+        <Checkbox toggleHandler={this.props.toggleHandler} isFactData={this.props.isFactData}/>
 
         <div className="main__container">
           <select value={this.state.value} className="main__select" onChange={(e)=>{this.setState({value: e.target.value})}}>
