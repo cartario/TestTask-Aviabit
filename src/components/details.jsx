@@ -5,11 +5,9 @@ import { Link } from 'react-router-dom';
 import Chart from './chart';
 import SumResult from './sum-result';
 import Row from './row';
-import Checkbox from './checkbox';
-import withSum from '../hocs/withSum';
 
 const Details = (props) =>{
-  const {flights, activeFlight, isFactData, setSumData, toggleHandler, currentFlights} = props;
+  const {flights, activeFlight, isFactData, currentFlights} = props;
   const {value, year} = activeFlight;
 
   return (
@@ -22,8 +20,7 @@ const Details = (props) =>{
           ? `фактическим`
           : `плановым`} рейсам`}
       </h2>
-
-      {/* <Checkbox toggleHandler = {toggleHandler} isFactData={isFactData}/> */}
+      
       <Chart currentFlights={currentFlights}/>
       
       <div className="details-container">
@@ -35,7 +32,7 @@ const Details = (props) =>{
             <tr className="details__row" >
               <td className="details__item details__item--section" colSpan={names.length}>По выбранному</td>
             </tr>
-            {currentFlights.map((flight)=> <Row key={getRandomInt(1,100)} flight={flight}/>) }
+            {currentFlights.map((flight)=> <Row key={getRandomInt(1,100).toString()} flight={flight}/>) }
             <tr className="details__row" >
               <td className="details__item details__item--section" colSpan={names.length}>Суммарно за {value}</td>
             </tr>
@@ -46,7 +43,7 @@ const Details = (props) =>{
               <td className="details__item details__item--section" colSpan={names.length}>По всем полетам</td>
             </tr>
             {flights.sort((a,b)=>b.dateFlight - a.dateFlight).map((flight)=>            
-              <Row key={getRandomInt(200,300)} flight={flight}/>              
+              <Row key={getRandomInt(200,300).toString()} flight={flight}/>              
             )}        
           </tbody>
         </table>
@@ -55,4 +52,4 @@ const Details = (props) =>{
   );
 }
 
-export default withSum(Details);
+export default Details;

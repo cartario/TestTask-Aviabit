@@ -10,23 +10,15 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-      value: `Все года`,
-      sumData: {
-        timeWork: 0,
-        timeFlight: 0,
-        timeBlock: 0,
-        timeNight: 0,
-        timeBiologicalNight: 0,
-      },
+      value: defaultName,      
     };
 
     this._clickHandler = this._clickHandler.bind(this);
   }
 
   _clickHandler(value){    
-    this.props.setActiveFlight(value, this.state.value, this.props.isFactData);
-    this.props.setSumData(this.state.sumData);
-    this.props.setFilteredFlights(value, this.state.value, this.props.isFactData);
+    this.props.setActiveFlight(value, this.state.value, this.props.isFactData);    
+    this.props.setCurrentFlights(value, this.state.value, this.props.isFactData);
   }
 
   render(){

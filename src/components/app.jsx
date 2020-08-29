@@ -12,7 +12,7 @@ import {ActionCreator} from '../reducer.js';
 import withToggle from '../hocs/withToggle';
 
 const App = (props) => {
-  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setSumData, setFilteredFlights, currentFlights} = props;
+  const {flights, activeFlight, setActiveFlight, toggleHandler, isFactData, setCurrentFlights, currentFlights} = props;
 
   return (    
     <div className="App">
@@ -23,17 +23,16 @@ const App = (props) => {
             setActiveFlight = {setActiveFlight}
             toggleHandler = {toggleHandler}
             isFactData = {isFactData}
-            flights = {flights}
-            setSumData = {setSumData}
-            setFilteredFlights={setFilteredFlights}
+            flights = {flights}            
+            setCurrentFlights={setCurrentFlights}
           />  
         </Route>
         <Route path="/details">
-          <Details flights = {flights}
-          activeFlight = {activeFlight}
-          toggleHandler = {toggleHandler}
-          isFactData = {isFactData}
-          currentFlights= {currentFlights}
+          <Details 
+            flights = {flights}
+            activeFlight = {activeFlight}          
+            isFactData = {isFactData}
+            currentFlights= {currentFlights}
           />
         </Route>
         <Footer/>
@@ -52,11 +51,9 @@ const mapDispatchToProps = (dispatch) => ({
   setActiveFlight: (value, year, isFactData) => {
     dispatch(ActionCreator.setActiveFlight(value, year, isFactData));    
   },
-  setSumData: (sumData) => {
-    dispatch(ActionCreator.setSumData(sumData));
-  },
-  setFilteredFlights: (value, year, isFactData) => {
-    dispatch(ActionCreator.setFilteredFlights(value, year, isFactData));
+  
+  setCurrentFlights: (value, year, isFactData) => {
+    dispatch(ActionCreator.setCurrentFlights(value, year, isFactData));
   },
 });
 
