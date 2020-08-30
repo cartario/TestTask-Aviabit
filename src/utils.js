@@ -11,20 +11,6 @@ export const getUniqYears = (flights, isFactData) => {
     .sort((a,b)=> b-a))];
 };
 
-export const getUniq = (arr) => {
-  return [...new Set(arr)];
-};
-
-export const getYears = (flights) => {
-  return flights.map((flight)=>flight.dateFlight.getFullYear());
-};
-
-export const getMonthsByYear = (flightsByFact, year) => {
-  return flightsByFact
-    .filter((flight) => flight.dateFlight.getFullYear() === Number(year))
-    .map((flight)=>getMonthName(flight.dateFlight.getMonth()));
-};
-
 export const getUniqValues = (flights, isYear = false) => {  
   const list = flights
     .map((flight)=>{
@@ -86,11 +72,3 @@ export const adapter = (data) => ({
     long: 109.21944444,
   },
 });
-
-export const getFlightsByFact = (flights, isFactData) => {
-  return flights.filter((flight)=> isFactData ? flight.type === 0 : flight.type === 1);
-};
-
-export const sum = (flights, type)=>{
-  return flights.map((flight)=>flight[type]).reduce((a,b)=>a+b);
-};
