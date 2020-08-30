@@ -1,13 +1,15 @@
 import React from 'react';
 import Card from './card.jsx';
-import {getUniqYears} from '../utils';
-import {getFlightsByActive} from '../reducer';
+import {getUniqYears, getFlightsByFact, getMonthsByYear, getYears, getUniq} from '../utils';
+import {getFlightsByActive, reducer2} from '../reducer';
 import {defaultName} from '../const';
 import Checkbox from './checkbox';
 
 class Main extends React.Component {
   constructor(props){
     super(props);
+
+    
 
     this.state = {
       value: defaultName,      
@@ -21,7 +23,32 @@ class Main extends React.Component {
     this.props.setCurrentFlights(value, this.state.value, this.props.isFactData);
   }
 
+  componentDidUpdate() {
+    // const flightsByFact = getFlightsByFact(this.props.flights, this.props.isFactData);
+    
+    // if(this.state.value === defaultName) {
+      
+    //   const years = getYears(flightsByFact);      
+    //   const uniqYears = getUniq(years);
+
+      
+      
+    //   const filteredFlightsByYear = uniqYears.map((year)=>flightsByFact.filter((flight) => flight.dateFlight.getFullYear()===year))
+      
+      
+
+    //   console.log(filteredFlightsByYear);
+    //   return;
+    // }
+    //   const months = getMonthsByYear(flightsByFact, this.state.value);
+    //   const uniqMonths = getUniq(months);
+    //   console.log(uniqMonths);
+    // return;
+  }
+
   render(){
+    console.log(reducer2(this.props.flights, this.props.isFactData, this.state.value));
+
     return (
       <main className="main">
         <h1 className="main__title">
@@ -53,13 +80,15 @@ class Main extends React.Component {
             </li>           
           </ul> 
         </div>
-        {getFlightsByActive(this.props.flights, this.state.value, this.props.isFactData).sort((a,b)=>b.dateFlight - a.dateFlight).map((data)=>
-        <Card 
-          key={data.dateFlight}
-          data={data}
-          activeYear={this.state.value}
-          clickHandler = {this._clickHandler}
-        />)}        
+        {getFlightsByActive(this.props.flights, this.state.value, this.props.isFactData)
+          .sort((a,b)=>b.dateFlight - a.dateFlight)
+          .map((data)=>
+          <Card 
+            key={data.dateFlight}
+            data={data}
+            activeYear={this.state.value}
+            clickHandler = {this._clickHandler}
+          />)}        
       </main>
     );
   }

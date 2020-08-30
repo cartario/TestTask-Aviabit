@@ -1,6 +1,7 @@
 import {defaultName} from './const';
-import {extend, adapter, getUniqValues, getMonthName} from './utils.js';
+import {extend, adapter, getUniqValues, getMonthName, sum} from './utils.js';
 import {flights} from './mock';
+import {getUniqYears, getFlightsByFact, getMonthsByYear, getYears, getUniq} from './utils';
 
 export const getFlightsByActive = (flights, state, isFactData) => {
   const flightsByFact = flights.filter((flight)=>{
@@ -10,17 +11,17 @@ export const getFlightsByActive = (flights, state, isFactData) => {
   const flightsCopy = flightsByFact.slice();
   const flightsByYear = flightsByFact.filter((flight)=> flight.dateFlight.getFullYear() === Number(state));
 
-  const getSum = (value, type) => {    
-    const sum = flightsCopy
+  const getSum = (value, type) => {  
+    let arr;
+    state === `Все года` ? arr = flightsCopy:  arr = flightsByYear;
+    const sum = arr
     .filter((flight)=> {
       let result;
       value > 12 ? result = flight.dateFlight.getFullYear() : result = flight.dateFlight.getMonth();      
       return result === value;
     })
     .map((it)=> it[type])
-    .reduce((a, b)=>{
-      return a + b;
-    });
+    .reduce((a, b)=> a + b);
     return sum;
   };
 
@@ -47,7 +48,44 @@ export const getFlightsByActive = (flights, state, isFactData) => {
   if(state === defaultName){    
     return getFilteredFlights(true);
   }  
+  
   return getFilteredFlights(false).reverse();
+};
+
+export const reducer2 = (flights, isFactData, selectedValue) => {
+  const flightsByFact = getFlightsByFact(flights, isFactData);
+    
+    if(selectedValue === defaultName) {
+      
+      const years = getYears(flightsByFact);      
+      const uniqYears = getUniq(years);   
+      
+      const filteredFlightsByYear = uniqYears.map((year)=>flightsByFact.filter((flight) => flight.dateFlight.getFullYear()===year))
+      
+      const sumTimeWork = filteredFlightsByYear.map((arr)=> sum(arr, `timeWork`));
+      const sumTimeFlight = filteredFlightsByYear.map((arr)=> sum(arr, `timeFlight`));
+      const sumTimeBlock = filteredFlightsByYear.map((arr)=> sum(arr, `timeBlock`));
+      
+      const resultOnBoard = {sumTimeWork, sumTimeFlight, sumTimeBlock};
+            
+      return resultOnBoard;
+    }
+      const months = getMonthsByYear(flightsByFact, selectedValue);
+      const uniqMonths = getUniq(months);
+      const flightsByCurrentYear = flightsByFact.filter((flight) => flight.dateFlight.getFullYear()===Number(selectedValue));
+
+      const filteredFlightsByMonth = uniqMonths      
+      .map((month)=>flightsByCurrentYear
+      .filter((flight) => getMonthName(flight.dateFlight.getMonth())===month));      
+      
+      const sumTimeWork = filteredFlightsByMonth.map((arr)=> sum(arr, `timeWork`));
+      const sumTimeFlight = filteredFlightsByMonth.map((arr)=> sum(arr, `timeFlight`));
+      const sumTimeBlock = filteredFlightsByMonth.map((arr)=> sum(arr, `timeBlock`));
+
+
+      
+      const resultOnBoard = {sumTimeWork, sumTimeFlight, sumTimeBlock};
+    return resultOnBoard;
 };
 
 const initialState = {
