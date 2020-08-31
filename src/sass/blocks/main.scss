@@ -50,6 +50,10 @@
   margin: 5px;
 }
 
+.searchbar input{
+  min-width: 320px;
+}
+
 @media (max-width: $tablet-width) {
   .main__container{
     flex-direction: column;

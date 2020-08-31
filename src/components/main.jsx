@@ -4,16 +4,27 @@ import {getUniqYears} from '../utils';
 import {getFlightsByActive} from '../reducer';
 import {defaultName} from '../const';
 import Checkbox from './checkbox';
+import SearchBar from './searchbar';
 
 class Main extends React.Component {
   constructor(props){
     super(props);    
 
     this.state = {
-      value: defaultName,      
+      value: defaultName,    
+      
+      data: this.props.flights,
+      term: '',
     };
 
     this._clickHandler = this._clickHandler.bind(this);
+    this.updateData = this.updateData.bind(this);
+
+    
+  }
+
+  updateData(config) {
+    this.setState(config);
   }
 
   _clickHandler(value){    
@@ -32,7 +43,12 @@ class Main extends React.Component {
         </h1>
 
         <Checkbox toggleHandler={this.props.toggleHandler} isFactData={this.props.isFactData}/>
-
+        <SearchBar 
+          updateData={this.updateData}
+          term={this.state.term}
+          data={this.state.data}
+                      
+        />
         <div className="main__container">
           <select value={this.state.value} className="main__select" onChange={(e)=>{this.setState({value: e.target.value})}}>
             <option>
@@ -54,7 +70,7 @@ class Main extends React.Component {
             </li>           
           </ul> 
         </div>
-        {getFlightsByActive(this.props.flights, this.state.value, this.props.isFactData)
+        {getFlightsByActive(this.state.data, this.state.value, this.props.isFactData)
           .sort((a,b)=>b.dateFlight - a.dateFlight)
           .map((data)=>
           <Card 
