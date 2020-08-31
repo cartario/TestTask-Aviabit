@@ -11,16 +11,21 @@ class Main extends React.Component {
     super(props);    
 
     this.state = {
-      value: defaultName,    
+      value: defaultName,
+      initialData: this.props.flights,  
       
       data: this.props.flights,
       term: '',
     };
 
     this._clickHandler = this._clickHandler.bind(this);
-    this.updateData = this.updateData.bind(this);
+    this.updateData = this.updateData.bind(this);    
+  }
 
-    
+  componentDidMount(){
+    this.setState({
+      data: this.state.initialData,
+    });
   }
 
   updateData(config) {
@@ -46,7 +51,7 @@ class Main extends React.Component {
         <SearchBar 
           updateData={this.updateData}
           term={this.state.term}
-          data={this.state.data}
+          data={this.state.initialData}
                       
         />
         <div className="main__container">
