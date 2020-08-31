@@ -84,7 +84,7 @@ class Main extends React.Component {
             activeYear={this.state.value}
             clickHandler = {this._clickHandler}
           />)}
-          {!getFlightsByActive(this.props.flights, this.state.value, this.props.isFactData).length &&
+          {!getFlightsByActive(this.state.data, this.state.value, this.props.isFactData).length &&
           <div>Таких рейсов нет!</div> 
           
           }
